@@ -30,3 +30,4 @@ Run the container:
   - logs: outputs colored logs
   - stop: stops containers withour removing them
   - rm: removes stopped containers ... use -v to remove Docker Volumes also
+  
