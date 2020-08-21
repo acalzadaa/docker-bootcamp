@@ -12,11 +12,6 @@ This project is intended to unveil the mistery of Docker and provide the user th
 
 To run this example:
 
-docker build -t identidock .
-docker run -d --name dnmonster amouat/dnmonster:1.0
-docker run -d -p 5000:5000 -e "ENV=DEV" --link dnmonster:dnmonster identidock
+- docker-compose up -d
 
-or
-
-docker build -t identidock .
-docker-compose up -d
+- url: http://localhost:5000
