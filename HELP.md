@@ -1,9 +1,10 @@
+# DOCKER HELP
 
-Build the container:
+## Build the container
 
     - docker build -t identidock .
 
-Run the container:
+## Run the container
 
 - docker run -d -p 5000:5000 identidock
 - docker run --rm -d -p 5000:5000 --name identidock identidock
@@ -13,11 +14,17 @@ Run the container:
         {--name : give a specific name to this container}
         {-e "Key=Value" : to send an environment value to Docker}
 
+## Stop the container
+
 - docker stop $(docker ps -lq)
   - stops all containers
 
+## Remove the containers
+
 - docker rm $(docker ps -lq)
   - remove all containers
+
+## Firing up containers using docker compose
 
 - docker-compose.yml -> docker-compose [command]
   - up: starts a container
