@@ -37,15 +37,15 @@
   
 docker
 
-| command | options | description | example |
-| - | - | - | - |
-| build | -t (tag) | builds the container | docker build -t container-id . |
+| command | options  | description          | example                        |
+| ------- | -------- | -------------------- | ------------------------------ |
+| build   | -t (tag) | builds the container | docker build -t container-id . |
 
 docker-compose
 
-| command | options | description | example |
-| - | - | - | - |
-| up | -d (*detached) | construct the images described in the docker-compose.yml | docker-compose up -d
+| command | options         | description                                              | example              |
+| ------- | --------------- | -------------------------------------------------------- | -------------------- |
+| up      | -d (\*detached) | construct the images described in the docker-compose.yml | docker-compose up -d |
 
 ### build a container from a Dockerfile
 
@@ -70,3 +70,52 @@ docker diff container-hostname
 docker stop container-alias
 docker pause container-alias
 docker start container-alias
+
+### Dockerfile syntax
+
+ #Comment
+ INSTRUCTION arguments
+
+| INSTRUCTION | DESCRIPTION                               | SYNTAX                        | EXAMPLE                                       |
+| ----------- | ----------------------------------------- | ----------------------------- | --------------------------------------------- |
+| ADD         | like COPY but also fetches                | `ADD <str> ... <dst>`         | ADD web-page-config.tar /                     |
+| CMD         | Executes a command after launch           | `CMD ["exec", "arg1"...]`     | `CMD ["echo", "hello world"]`                 |
+| COPY        | copy files from host to imaga             | `COPY <str> ... <dst>`        | COPY html /var/www/html                       |
+| ENTRYPOINT  | run an app at run                         | `ENTRYPOINT <command>`        | `ENTRYPOINT ["echo", "Dockerfile"]`           |
+| ENV         | sets environment variable                 | `ENV <key> <value>`           | `ENV DEBUG_LVL 3`                             |
+| EXPOSE      | opens up a container network port         | `EXPOSE <port>[/<proto>]`     | `EXPOSE 7373/udp 8080`                        |
+| FROM        | It sets the base image                    | `FROM <image>[:<tag>]`        | FROM ubuntu:14.04                             |
+| MAINTAINER  | Sets details in an image                  | `MAINTAINER <autor's details` | `MAINTAINER John Doe <jd@jd.com>`             |
+| ONBUILD     | registers a build instruction to an image | `ONBUILD <INSTRUCTION>`       | `ONBUILD ADD config /etc/appconfig`           |
+| RUN         | run a command at build                    | `RUN <command>`               | `RUN ["bash", "-c", "rm", "-rf", "/tmp/abc"]` |
+| USER        | sets the start up user id                 | USER user                     |                                               |
+| VOLUME      | creates a dir in the image filesystem     | `VOLUME <mountpoint>`         |                                               |
+| WORKDIR     | changes the current dir from / to         | `WORKDIR <dirpath>`           | `WORKDIR /var/log`                            |
+
+Note: The command supplied through the RUN instruction is executed during the build time,
+whereas the command specified through the CMD instruction is executed when the
+container is launched from the newly created image.
+
+### running a demo
+
+docker build -t image-name .
+docker run --rm --name image-alias image-name
+
+### .dockerignore file
+
+Always mention your .git folder in your .dockerignore file:
+
+.git
+.tmp
+.cache
+**/*.class
+*.md
+
+Eliminate:
+
+- build logs
+- test scripts/results
+- temporary files
+- caching/intermediate artifacts
+- local secrets
+- Local development files such as docker-compose.yml

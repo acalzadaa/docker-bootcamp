@@ -1,3 +1,4 @@
 #Busybox example
 FROM busybox:latest
-CMD echo Hello World!!
+LABEL name="John Doe"
+ENTRYPOINT ["echo", "hello world"]
