@@ -8,5 +8,10 @@ apt-get clean
 # Set the log directory PATH
 ENV APACHE_LOG_DIR /var/log/apache2
 
+# Expose port 80
+EXPOSE 80
+# or you can use docker -p <hostport>:<containerport> 
+# docker -it --rm -p 9999:80 --name somecontainer apache2
+
 # Launch apache2 server in the foreground
 ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
