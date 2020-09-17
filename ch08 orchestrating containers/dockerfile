@@ -1,0 +1,4 @@
+# testing a docker file to orchestrate
+FROM node:latest
+RUN npm install redis
+ADD example.js /myapp/example.js

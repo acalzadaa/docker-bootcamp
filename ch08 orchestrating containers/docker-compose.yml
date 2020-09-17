@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    command: node /myapp/example.js
+    links:
+      - redis
+    ports:
+      - 9990:80
+  redis:
+    image: redis:latest

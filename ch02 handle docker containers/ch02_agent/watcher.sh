@@ -5,7 +5,7 @@ do
     then
 		echo "System up."
     else 
-        	printf "To: admin@work  Message: The service is down!" | nc localhost 33333
+        	printf "To* |admin@work  Message* |The service is down!" | nc localhost 33333
             break
 	fi
 
